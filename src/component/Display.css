@@ -1,0 +1,14 @@
+.Display {
+  background-color: #424242;
+  width: 100%;
+  height: 100px;
+}
+
+.Display-value {
+  color: #ffffff;
+  text-align: right;
+  font-size: 60px;
+  line-height: 100px;
+  width: 95%;
+  margin: 0 auto;
+}
