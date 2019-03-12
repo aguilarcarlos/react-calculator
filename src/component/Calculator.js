@@ -30,6 +30,7 @@ const calculate = (char, prevState) => {
         reset: false
       };
     case "ac":
+    case "Escape":
       return {
         total: 0,
         current: 0,
@@ -38,6 +39,7 @@ const calculate = (char, prevState) => {
         awaiting: false
       };
     case "=":
+    case "Enter":
       if (total && operation) {
         return {
           ...prevState,
@@ -113,6 +115,7 @@ const calculate = (char, prevState) => {
       };
 
     case "x":
+    case "*":
       if (total && operation && !awaiting) {
         return {
           ...prevState,
@@ -142,6 +145,18 @@ export default class Calculator extends Component {
     current: 0,
     reset: true,
     operation: null
+  }
+
+  componentWillMount() {
+    document.addEventListener("keydown", this.onKeyPressed.bind(this));
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.onKeyPressed.bind(this));
+  } 
+
+  onKeyPressed(e) {
+    this.handleOperation(e.key);
   }
 
   handleOperation = char => {
